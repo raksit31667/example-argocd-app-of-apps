@@ -1,0 +1,54 @@
+# Helm
+charts/*/charts/
+charts/**/charts/
+*.tgz
+.helm/
+
+# Helm chart lock files (optional: remove if you want to commit them)
+# Chart.lock
+
+# Kustomize build output
+kustomize/build/
+kustomize/**/build/
+
+# ArgoCD secrets / kubeconfig
+kubeconfig
+*.kubeconfig
+argocd-secret.yaml
+*-secret.yaml
+secrets/
+
+# Kubernetes credentials and tokens
+*.token
+serviceaccount/
+
+# Terraform (if used for cluster provisioning)
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfplan
+.terraformrc
+terraform.rc
+
+# Environment variable files
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Logs
+*.log
+logs/
