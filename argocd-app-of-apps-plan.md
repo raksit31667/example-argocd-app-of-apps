@@ -12,7 +12,7 @@ Build a full ArgoCD app-of-apps pattern covering service management (microservic
 
 2. Create `charts/apps/Chart.yaml` — minimal Helm chart metadata (apiVersion v2, type application).
 
-3. Create `app-of-apps.yaml` — root ArgoCD Application bootstrapped with `kubectl apply`. Points to `charts/apps` in `<SOURCE_REPO_SSH_URL>`, project `default`, destination `https://kubernetes.default.svc`, namespace `argocd`.
+3. Create `app-of-apps.yaml` — root ArgoCD Application bootstrapped with `kubectl apply`. Points to `charts/apps` in `git@github.com:raksit31667/example-argocd-app-of-apps.git`, project `default`, destination `https://kubernetes.default.svc`, namespace `argocd`.
 
 ---
 
@@ -39,7 +39,7 @@ Build a full ArgoCD app-of-apps pattern covering service management (microservic
    - Generator: `clusters` with `matchLabels: <CLUSTER_LABEL_KEY>: "<CLUSTER_LABEL_VALUE>"`
    - Template name: `cluster-core-crds-{{name}}`
    - Project: `cluster-core`
-   - Source: `<SOURCE_REPO_SSH_URL>`, path `kustomize/cluster-core/crds`, `targetRevision: HEAD`
+   - Source: `git@github.com:raksit31667/example-argocd-app-of-apps.git`, path `kustomize/cluster-core/crds`, `targetRevision: HEAD`
    - Destination: `{{server}}`, namespace `default`
 
 8. Create `charts/apps/templates/cluster-core-gateway-class.yaml` — ApplicationSet (same generator pattern as CRDs, path `kustomize/cluster-core/gateway-class`, name `cluster-core-gateway-class-{{name}}`).
@@ -68,11 +68,11 @@ Build a full ArgoCD app-of-apps pattern covering service management (microservic
 
 10. Create `charts/apps/templates/cluster-addons.yaml` — ApplicationSet:
     - Generator: `matrix` combining:
-      - `git` generator scanning `charts/cluster-addons/*` directories in `<SOURCE_REPO_SSH_URL>` (revision: `main`)
+      - `git` generator scanning `charts/cluster-addons/*` directories in `git@github.com:raksit31667/example-argocd-app-of-apps.git` (revision: `main`)
       - `clusters` generator with `matchLabels: <CLUSTER_LABEL_KEY>: "<CLUSTER_LABEL_VALUE>"`
     - Template name: `{{path.basename}}-{{name}}`
     - Project: `cluster-addons`
-    - Source: `<SOURCE_REPO_SSH_URL>`, path `{{path}}`, helm `releaseName: {{path.basename}}`, valueFiles `[values.yaml, values.{{name}}.yaml]`
+    - Source: `git@github.com:raksit31667/example-argocd-app-of-apps.git`, path `{{path}}`, helm `releaseName: {{path.basename}}`, valueFiles `[values.yaml, values.{{name}}.yaml]`
     - Destination: `{{server}}`, namespace `{{path.basename}}`
 
 ---
@@ -114,13 +114,13 @@ Build a full ArgoCD app-of-apps pattern covering service management (microservic
 19. Create `charts/apps/templates/gha-runner-scale-set-controller.yaml` — Application:
     - Project: `<DEVOPS_PROJECT>`
     - Destination: `https://kubernetes.default.svc`, namespace `<RUNNER_NAMESPACE>`
-    - Source: `<SOURCE_REPO_SSH_URL>`, path `charts/gha-runner-scale-set-controller`
+    - Source: `git@github.com:raksit31667/example-argocd-app-of-apps.git`, path `charts/gha-runner-scale-set-controller`
     - syncOptions: `ServerSideApply=true`
 
 20. Create `charts/apps/templates/gha-runner.yaml` — Application:
     - Project: `<DEVOPS_PROJECT>`
     - Destination: `https://kubernetes.default.svc`, namespace `<RUNNER_NAMESPACE>`
-    - Source: `<SOURCE_REPO_SSH_URL>`, path `charts/gha-runner`
+    - Source: `git@github.com:raksit31667/example-argocd-app-of-apps.git`, path `charts/gha-runner`
 
 ---
 
@@ -198,8 +198,6 @@ Build a full ArgoCD app-of-apps pattern covering service management (microservic
 
 | Placeholder | Example value |
 |---|---|
-| `<SOURCE_REPO_SSH_URL>` | `git@github.com:<ORG>/<INFRA_REPO>.git` |
-| `<DEPLOYMENT_REPO_SSH_URL>` | `git@github.com:<ORG>/<DEPLOY_REPO>.git` |
 | `<CLUSTER_LABEL_KEY>` | `environment` |
 | `<CLUSTER_LABEL_VALUE>` | `managed` |
 | `<MICROSERVICES_CLUSTER_LABEL>` | `microservices` |

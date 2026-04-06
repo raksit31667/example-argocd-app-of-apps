@@ -8,7 +8,7 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: <SOURCE_REPO_SSH_URL>
+              repoURL: git@github.com:raksit31667/example-argocd-app-of-apps.git
               revision: main
               directories:
                 - path: kustomize/service-namespaces
@@ -22,7 +22,7 @@ spec:
     spec:
       project: <DEVOPS_PROJECT>
       source:
-        repoURL: <SOURCE_REPO_SSH_URL>
+        repoURL: git@github.com:raksit31667/example-argocd-app-of-apps.git
         targetRevision: HEAD
         path: kustomize/service-namespaces
       destination:

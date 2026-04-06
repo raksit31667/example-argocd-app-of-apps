@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: <SOURCE_REPO_SSH_URL>
+    repoURL: git@github.com:raksit31667/example-argocd-app-of-apps.git
     targetRevision: HEAD
     path: charts/apps
   destination:
