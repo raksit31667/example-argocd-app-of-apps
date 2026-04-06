@@ -1,0 +1,13 @@
+cluster-autoscaler:
+  autoDiscovery:
+    clusterName: <CLUSTER_NAME>
+  awsRegion: <AWS_REGION>
+  rbac:
+    serviceAccount:
+      create: true
+      name: cluster-autoscaler
+      annotations:
+        eks.amazonaws.com/role-arn: <CLUSTER_AUTOSCALER_ROLE_ARN>
+  extraArgs:
+    balance-similar-node-groups: "true"
+    skip-nodes-with-system-pods: "false"

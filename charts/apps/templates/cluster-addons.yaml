@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: <SOURCE_REPO_SSH_URL>
+              revision: main
+              directories:
+                - path: charts/cluster-addons/*
+          - clusters:
+              selector:
+                matchLabels:
+                  <CLUSTER_LABEL_KEY>: "<CLUSTER_LABEL_VALUE>"
+  template:
+    metadata:
+      name: "{{path.basename}}-{{name}}"
+    spec:
+      project: cluster-addons
+      source:
+        repoURL: <SOURCE_REPO_SSH_URL>
+        targetRevision: HEAD
+        path: "{{path}}"
+        helm:
+          releaseName: "{{path.basename}}"
+          valueFiles:
+            - values.yaml
+            - "values.{{name}}.yaml"
+      destination:
+        server: "{{server}}"
+        namespace: "{{path.basename}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

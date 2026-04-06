@@ -1,0 +1,4 @@
+metrics-server:
+  replicas: 2
+  args:
+    - --kubelet-preferred-address-types=InternalIP

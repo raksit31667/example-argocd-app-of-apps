@@ -1,0 +1,5 @@
+gha-runner-scale-set-controller:
+  replicaCount: 1
+  serviceAccount:
+    create: true
+    name: gha-runner-scale-set-controller

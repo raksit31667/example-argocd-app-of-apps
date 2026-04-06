@@ -65,7 +65,6 @@ Build a full ArgoCD app-of-apps pattern covering service management (microservic
    | `datadog` | Datadog agent |
    | `external-dns` | ExternalDNS |
    | `metric` | Metrics server |
-   | `salt-sensor` | Salt security sensor |
 
 10. Create `charts/apps/templates/cluster-addons.yaml` — ApplicationSet:
     - Generator: `matrix` combining:
@@ -164,7 +163,6 @@ Build a full ArgoCD app-of-apps pattern covering service management (microservic
 | `charts/cluster-addons/datadog/` | Datadog agent wrapper chart + per-cluster values |
 | `charts/cluster-addons/external-dns/` | ExternalDNS wrapper chart + per-cluster values |
 | `charts/cluster-addons/metric/` | Metrics server wrapper chart + per-cluster values |
-| `charts/cluster-addons/salt-sensor/` | Salt security sensor wrapper chart + per-cluster values |
 | `charts/gha-runner-scale-set-controller/` | Controller wrapper chart |
 | `charts/gha-runner/` | Runner chart |
 | `kustomize/cluster-core/crds/` | CRD kustomize layer |
@@ -210,7 +208,7 @@ Build a full ArgoCD app-of-apps pattern covering service management (microservic
 | `<ALIAS>` | `my-cluster-name` |
 | `<DEVOPS_PROJECT>` | `devops-cluster` |
 | `<RUNNER_NAMESPACE>` | `gha-runner-scale-set` |
-| `<ADDON_NAME>` | `aws-loadbalancer-controller`, `cluster-autoscaler`, `crowdstrike`, `datadog`, `external-dns`, `metric`, `salt-sensor` |
+| `<ADDON_NAME>` | `aws-loadbalancer-controller`, `cluster-autoscaler`, `crowdstrike`, `datadog`, `external-dns`, `metric` |
 | `<SERVICE_NAMESPACE>` | `payments`, `notifications` |
 | `<GITHUB_CONFIG_URL>` | `https://github.com/<ORG>` |
 | `<GITHUB_SECRET_NAME>` | `github-runner-secret` |

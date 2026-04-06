@@ -1,0 +1,7 @@
+falcon-sensor:
+  falcon:
+    cid: <CROWDSTRIKE_CID>
+  node:
+    enabled: true
+  container:
+    enabled: false

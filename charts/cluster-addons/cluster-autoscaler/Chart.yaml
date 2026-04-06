@@ -1,0 +1,9 @@
+apiVersion: v2
+name: cluster-autoscaler
+description: Wrapper chart for Cluster Autoscaler
+type: application
+version: 0.1.0
+dependencies:
+  - name: cluster-autoscaler
+    version: "9.x.x"
+    repository: https://kubernetes.github.io/autoscaler

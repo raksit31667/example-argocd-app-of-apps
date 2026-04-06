@@ -1,0 +1,3 @@
+falcon-sensor:
+  falcon:
+    cid: <CROWDSTRIKE_CID_CLUSTER_NAME>

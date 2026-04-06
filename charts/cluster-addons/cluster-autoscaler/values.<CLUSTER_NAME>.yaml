@@ -1,0 +1,7 @@
+cluster-autoscaler:
+  autoDiscovery:
+    clusterName: <CLUSTER_NAME>
+  rbac:
+    serviceAccount:
+      annotations:
+        eks.amazonaws.com/role-arn: <CLUSTER_AUTOSCALER_ROLE_ARN_CLUSTER_NAME>

@@ -1,0 +1,82 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: <DEVOPS_PROJECT>
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  sourceRepos:
+    - "*"
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: "*"
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+    - group: apiregistration.k8s.io
+      kind: APIService
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+    - group: networking.k8s.io
+      kind: IngressClass
+    - group: eks.amazonaws.com
+      kind: IngressClassParams
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: cluster-addons
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  sourceRepos:
+    - "*"
+  destinations:
+    - server: <K8S_API_SERVER_URL>
+      namespace: "*"
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+    - group: apiregistration.k8s.io
+      kind: APIService
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+    - group: networking.k8s.io
+      kind: IngressClass
+    - group: eks.amazonaws.com
+      kind: IngressClassParams
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: cluster-core
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+spec:
+  sourceRepos:
+    - "*"
+  destinations:
+    - server: <K8S_API_SERVER_URL>
+      namespace: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"

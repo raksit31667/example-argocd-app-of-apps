@@ -1,0 +1,13 @@
+external-dns:
+  provider: aws
+  aws:
+    region: <AWS_REGION>
+  domainFilters:
+    - <DOMAIN_FILTER>
+  serviceAccount:
+    create: true
+    name: external-dns
+    annotations:
+      eks.amazonaws.com/role-arn: <EXTERNAL_DNS_ROLE_ARN>
+  txtOwnerId: <CLUSTER_NAME>
+  policy: sync

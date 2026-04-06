@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: service-namespaces
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: <SOURCE_REPO_SSH_URL>
+              revision: main
+              directories:
+                - path: kustomize/service-namespaces
+          - clusters:
+              selector:
+                matchLabels:
+                  <MICROSERVICES_CLUSTER_LABEL>: "true"
+  template:
+    metadata:
+      name: "service-namespaces-{{name}}"
+    spec:
+      project: <DEVOPS_PROJECT>
+      source:
+        repoURL: <SOURCE_REPO_SSH_URL>
+        targetRevision: HEAD
+        path: kustomize/service-namespaces
+      destination:
+        server: "{{server}}"
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

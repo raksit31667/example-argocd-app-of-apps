@@ -1,0 +1,18 @@
+gha-runner-scale-set:
+  githubConfigUrl: <GITHUB_CONFIG_URL>
+  githubConfigSecret: <GITHUB_SECRET_NAME>
+  runnerGroup: <RUNNER_GROUP>
+  minRunners: 1
+  maxRunners: 10
+  containerMode:
+    type: dind
+  template:
+    spec:
+      serviceAccountName: gha-runner
+      containers:
+        - name: runner
+          image: ghcr.io/actions/actions-runner:latest
+          command: ["/home/runner/run.sh"]
+  controllerServiceAccount:
+    namespace: <RUNNER_NAMESPACE>
+    name: gha-runner-scale-set-controller

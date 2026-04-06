@@ -1,0 +1,17 @@
+datadog:
+  datadog:
+    apiKeyExistingSecret: <DATADOG_API_KEY_SECRET>
+    site: datadoghq.com
+    clusterName: <CLUSTER_NAME>
+    logs:
+      enabled: true
+      containerCollectAll: true
+    apm:
+      portEnabled: true
+    processAgent:
+      enabled: true
+  agents:
+    useConfigMap: true
+  clusterAgent:
+    enabled: true
+    replicas: 2

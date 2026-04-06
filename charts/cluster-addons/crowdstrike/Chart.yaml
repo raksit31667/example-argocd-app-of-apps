@@ -1,0 +1,9 @@
+apiVersion: v2
+name: crowdstrike
+description: Wrapper chart for CrowdStrike Falcon sensor
+type: application
+version: 0.1.0
+dependencies:
+  - name: falcon-sensor
+    version: "x.x.x"
+    repository: <CROWDSTRIKE_HELM_REPO_URL>

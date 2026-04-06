@@ -1,0 +1,5 @@
+aws-load-balancer-controller:
+  clusterName: <CLUSTER_NAME>
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: <AWS_LBC_ROLE_ARN_CLUSTER_NAME>

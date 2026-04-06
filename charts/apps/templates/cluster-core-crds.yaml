@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-core-crds
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            <CLUSTER_LABEL_KEY>: "<CLUSTER_LABEL_VALUE>"
+  template:
+    metadata:
+      name: "cluster-core-crds-{{name}}"
+    spec:
+      project: cluster-core
+      source:
+        repoURL: <SOURCE_REPO_SSH_URL>
+        targetRevision: HEAD
+        path: kustomize/cluster-core/crds
+      destination:
+        server: "{{server}}"
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

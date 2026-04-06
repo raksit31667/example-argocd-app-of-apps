@@ -1,0 +1,5 @@
+external-dns:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: <EXTERNAL_DNS_ROLE_ARN_CLUSTER_NAME>
+  txtOwnerId: <CLUSTER_NAME>

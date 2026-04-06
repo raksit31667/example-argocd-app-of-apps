@@ -1,0 +1,8 @@
+aws-load-balancer-controller:
+  clusterName: <CLUSTER_NAME>
+  serviceAccount:
+    create: true
+    name: aws-load-balancer-controller
+    annotations:
+      eks.amazonaws.com/role-arn: <AWS_LBC_ROLE_ARN>
+  replicaCount: 2
